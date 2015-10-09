@@ -1,0 +1,3 @@
+[submodule "submodules/Rokannon-AS3-Lib"]
+	path = submodules/Rokannon-AS3-Lib
+	url = https://github.com/Rokannon/Rokannon-AS3-Lib.git
