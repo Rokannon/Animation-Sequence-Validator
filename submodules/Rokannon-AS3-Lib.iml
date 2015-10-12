@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="Rokannon-AS3-Lib-Debug">
+    <configurations>
+      <configuration name="Rokannon-AS3-Lib-Debug" target-platform="Desktop" pure-as="true" output-type="Library" output-file="Rokannon-AS3-Lib-Debug.swc" output-folder="$MODULE_DIR$/../out/production/Rokannon-AS3-Lib">
+        <dependencies target-player="18.0">
+          <sdk name="AIRSDK18" />
+        </dependencies>
+        <compiler-options>
+          <map>
+            <entry key="compiler.define" value="CONFIG::log_debug&#9;true&#10;CONFIG::log_info&#9;true&#10;CONFIG::log_warn&#9;true&#10;CONFIG::log_error&#9;true&#10;CONFIG::log_fatal&#9;true&#10;CONFIG::debug&#9;true&#10;CONFIG::release&#9;false" />
+          </map>
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+      <configuration name="Rokannon-AS3-Lib-Release" target-platform="Desktop" pure-as="true" output-type="Library" output-file="Rokannon-AS3-Lib-Release.swc" output-folder="$MODULE_DIR$/../out/production/Rokannon-AS3-Lib">
+        <dependencies>
+          <sdk name="AIRSDK18" />
+        </dependencies>
+        <compiler-options>
+          <map>
+            <entry key="compiler.debug.swc" value="false" />
+            <entry key="compiler.define" value="CONFIG::log_debug&#9;false&#10;CONFIG::log_info&#9;false&#10;CONFIG::log_warn&#9;false&#10;CONFIG::log_error&#9;true&#10;CONFIG::log_fatal&#9;true&#10;CONFIG::debug&#9;false&#10;CONFIG::release&#9;true" />
+          </map>
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/Rokannon-AS3-Lib">
+      <sourceFolder url="file://$MODULE_DIR$/Rokannon-AS3-Lib/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="AIRSDK18" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<asv:Main xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:mx="library://ns.adobe.com/flex/mx"
+          xmlns:asv="com.rokannon.project.AnimationSequenceValidator.*" xmlns:s="library://ns.adobe.com/flex/spark"
+          width="500" height="300" frameRate="60"
+          applicationComplete="controller.startApplication();">
+
+    <mx:ViewStack id="vs" width="100%" height="100%">
+        <mx:Canvas>
+            <mx:Label text="Drag and Drop Image Sequence or Folder" horizontalCenter="0" verticalCenter="0"/>
+        </mx:Canvas>
+
+        <mx:Canvas>
+            <mx:VBox width="75%" horizontalCenter="0" verticalCenter="0">
+                <mx:ProgressBar id="pb" mode="manual" width="100%" height="100%"/>
+                <mx:HBox width="100%">
+                    <mx:Spacer width="100%"/>
+                    <mx:Button label="Abort" click="controller.abortFileLoad();"/>
+                </mx:HBox>
+            </mx:VBox>
+        </mx:Canvas>
+
+        <mx:Canvas>
+            <mx:VBox width="100%" height="100%">
+                <mx:Label id="l1" text="-"/>
+                <mx:Label id="l2" text="-"/>
+                <mx:Label id="l3" text="-"/>
+                <s:DataGrid id="dg" width="100%" height="100%" selectionMode="singleCell"
+                            initialize="dg.columnHeaderGroup.height=0">
+                    <s:dataProvider>
+                        <mx:ArrayList>
+                            <fx:Object>
+                                <fx:Artist>Pavement 1</fx:Artist>
+                                <fx:Price>1.99</fx:Price>
+                                <fx:Album>Slanted and Enchanted</fx:Album>
+                            </fx:Object>
+                            <fx:Object>
+                                <fx:Price>11.99</fx:Price>
+                                <fx:Artist>Pavement 2</fx:Artist>
+                                <fx:Album>Brighten the Corners</fx:Album>
+                            </fx:Object>
+                            <fx:Object>
+                                <fx:Price>11.99</fx:Price>
+                                <fx:Artist>Pavement 3</fx:Artist>
+                                <fx:Album>Brighten the Corners</fx:Album>
+                            </fx:Object>
+                            <fx:Object>
+                                <fx:Price>11.99</fx:Price>
+                                <fx:Artist>Pavement 4</fx:Artist>
+                                <fx:Album>Brighten the Corners</fx:Album>
+                            </fx:Object>
+                        </mx:ArrayList>
+                    </s:dataProvider>
+                </s:DataGrid>
+
+                <mx:HBox width="100%">
+                    <mx:Spacer width="100%"/>
+                    <mx:Button label="Reset" click="controller.abortFileLoad();"/>
+                </mx:HBox>
+            </mx:VBox>
+        </mx:Canvas>
+    </mx:ViewStack>
+</asv:Main>
