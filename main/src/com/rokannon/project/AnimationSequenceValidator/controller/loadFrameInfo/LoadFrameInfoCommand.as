@@ -39,6 +39,7 @@ package com.rokannon.project.AnimationSequenceValidator.controller.loadFrameInfo
         private function doPrepareReadFrameTypeContext():Boolean
         {
             _readFrameTypeContext.bitmapToRead = _loadBitmapContext.bitmap;
+            _readFrameTypeContext.configData = _context.model.configData;
             return true;
         }
 

@@ -1,6 +1,8 @@
 package com.rokannon.project.AnimationSequenceValidator.model
 {
     import com.rokannon.core.command.CommandExecutor;
+    import com.rokannon.logging.Log;
+    import com.rokannon.logging.Logger;
 
     import flash.filesystem.File;
 
@@ -9,6 +11,7 @@ package com.rokannon.project.AnimationSequenceValidator.model
         public const commandExecutor:CommandExecutor = new CommandExecutor();
         public const filesToLoad:Vector.<File> = new <File>[];
         public const frameInfos:Vector.<FrameInfo> = new <FrameInfo>[];
+        public const configData:ConfigData = new ConfigData();
 
         public var numLoadedFiles:int = 0;
 
@@ -24,6 +27,13 @@ package com.rokannon.project.AnimationSequenceValidator.model
                     ++numDirectories;
             // All files are non-directories or a single directory.
             return files.length > 0 && !(files.length > 1 && numDirectories > 0);
+        }
+
+        public function getColorFromString(string:String):uint
+        {
+            if (string.charAt(0) == "#")
+                string = string.substr(1);
+            return parseInt(string, 16);
         }
     }
 }

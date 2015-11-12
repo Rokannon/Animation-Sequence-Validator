@@ -6,6 +6,8 @@ package com.rokannon.project.AnimationSequenceValidator.controller
     import com.rokannon.project.AnimationSequenceValidator.Main;
     import com.rokannon.project.AnimationSequenceValidator.controller.directoryListing.DirectoryListingCommand;
     import com.rokannon.project.AnimationSequenceValidator.controller.directoryListing.DirectoryListingContext;
+    import com.rokannon.project.AnimationSequenceValidator.controller.fileLoad.FileLoadCommand;
+    import com.rokannon.project.AnimationSequenceValidator.controller.fileLoad.FileLoadContext;
     import com.rokannon.project.AnimationSequenceValidator.controller.loadFrameInfo.LoadFrameInfoCommand;
     import com.rokannon.project.AnimationSequenceValidator.controller.loadFrameInfo.LoadFrameInfoContext;
     import com.rokannon.project.AnimationSequenceValidator.controller.viewStackSelect.ViewStackSelectCommand;
@@ -19,6 +21,7 @@ package com.rokannon.project.AnimationSequenceValidator.controller
     import flash.filesystem.File;
 
     import mx.collections.ArrayList;
+    import mx.controls.Alert;
     import mx.managers.DragManager;
 
     import spark.components.DataGrid;
@@ -48,11 +51,32 @@ package com.rokannon.project.AnimationSequenceValidator.controller
 
         public function startApplication():void
         {
-            _applicationModel.commandExecutor.pushMethod(doStartApplication);
+            var fileLoadContext:FileLoadContext = new FileLoadContext();
+            fileLoadContext.fileToLoad = File.applicationDirectory.resolvePath("config.json");
+            _applicationModel.commandExecutor.pushCommand(new FileLoadCommand(fileLoadContext));
+            _applicationModel.commandExecutor.pushMethod(doParseConfig, true, fileLoadContext);
+            _applicationModel.commandExecutor.pushMethod(handleConfigError, false);
         }
 
-        private function doStartApplication():Boolean
+        private function doParseConfig(fileLoadContext:FileLoadContext):Boolean
         {
+            try
+            {
+                var json:Object = JSON.parse(fileLoadContext.fileContent.toString());
+                _applicationModel.configData.colorThreshold = parseInt(json["colorThreshold"]);
+                _applicationModel.configData.directionalColor = _applicationModel.getColorFromString(json["directionalColor"]);
+                _applicationModel.configData.stateColor = _applicationModel.getColorFromString(json["stateColor"]);
+            }
+            catch (error:Error)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private function handleConfigError():Boolean
+        {
+            Alert.show(Labels.ERROR_LOADING_CONFIG);
             return true;
         }
 
