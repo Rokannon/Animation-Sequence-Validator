@@ -1,8 +1,6 @@
 package com.rokannon.project.AnimationSequenceValidator.model
 {
     import com.rokannon.core.command.CommandExecutor;
-    import com.rokannon.logging.Log;
-    import com.rokannon.logging.Logger;
 
     import flash.filesystem.File;
 

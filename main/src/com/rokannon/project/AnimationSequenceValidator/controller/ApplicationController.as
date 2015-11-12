@@ -1,13 +1,13 @@
 package com.rokannon.project.AnimationSequenceValidator.controller
 {
+    import com.rokannon.command.directoryListing.DirectoryListingCommand;
+    import com.rokannon.command.directoryListing.DirectoryListingContext;
+    import com.rokannon.command.fileLoad.FileLoadCommand;
+    import com.rokannon.command.fileLoad.FileLoadContext;
     import com.rokannon.core.command.ConcurrentCommand;
     import com.rokannon.core.utils.string.stringFormat;
     import com.rokannon.math.utils.getMax;
     import com.rokannon.project.AnimationSequenceValidator.Main;
-    import com.rokannon.project.AnimationSequenceValidator.controller.directoryListing.DirectoryListingCommand;
-    import com.rokannon.project.AnimationSequenceValidator.controller.directoryListing.DirectoryListingContext;
-    import com.rokannon.project.AnimationSequenceValidator.controller.fileLoad.FileLoadCommand;
-    import com.rokannon.project.AnimationSequenceValidator.controller.fileLoad.FileLoadContext;
     import com.rokannon.project.AnimationSequenceValidator.controller.loadFrameInfo.LoadFrameInfoCommand;
     import com.rokannon.project.AnimationSequenceValidator.controller.loadFrameInfo.LoadFrameInfoContext;
     import com.rokannon.project.AnimationSequenceValidator.controller.viewStackSelect.ViewStackSelectCommand;
@@ -106,14 +106,14 @@ package com.rokannon.project.AnimationSequenceValidator.controller
                 _applicationModel.commandExecutor.pushCommand(new DirectoryListingCommand(listingContext));
                 _applicationModel.commandExecutor.pushMethod(function ():Boolean
                 {
-                    for (var i:int = 0; i < listingContext.directoryListing.length; i++)
+                    for (var i:int = 0; i < listingContext.directoryListing.length; ++i)
                         _applicationModel.filesToLoad[i] = listingContext.directoryListing[i];
                     return true;
                 });
             }
             else
             {
-                for (var i:int = 0; i < files.length; i++)
+                for (var i:int = 0; i < files.length; ++i)
                     _applicationModel.filesToLoad[i] = files[i];
             }
 
@@ -146,7 +146,7 @@ package com.rokannon.project.AnimationSequenceValidator.controller
             }
 
             var concurrentCommand:ConcurrentCommand;
-            for (var i:int = 0; i < _applicationModel.filesToLoad.length; i++)
+            for (var i:int = 0; i < _applicationModel.filesToLoad.length; ++i)
             {
                 if (i % NUM_FILE_LOAD_THREADS == 0)
                 {
@@ -174,7 +174,7 @@ package com.rokannon.project.AnimationSequenceValidator.controller
 
         private function onLoadFrameTypeFinished(target:LoadFrameInfoCommand):void
         {
-            _applicationModel.numLoadedFiles++;
+            ++_applicationModel.numLoadedFiles;
             target.eventComplete.remove(onLoadFrameTypeFinished);
             target.eventFailed.remove(onLoadFrameTypeFinished);
             _applicationView.getProgressBar().setProgress(_applicationModel.numLoadedFiles,

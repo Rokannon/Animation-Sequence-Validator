@@ -1,18 +1,18 @@
 package com.rokannon.project.AnimationSequenceValidator.controller.loadFrameInfo
 {
+    import com.rokannon.command.bitmapLoad.BitmapLoadCommand;
+    import com.rokannon.command.bitmapLoad.BitmapLoadContext;
+    import com.rokannon.command.fileLoad.FileLoadCommand;
+    import com.rokannon.command.fileLoad.FileLoadContext;
     import com.rokannon.core.command.MethodCommand;
     import com.rokannon.core.command.SequenceCommand;
-    import com.rokannon.project.AnimationSequenceValidator.controller.fileLoad.FileLoadCommand;
-    import com.rokannon.project.AnimationSequenceValidator.controller.fileLoad.FileLoadContext;
-    import com.rokannon.project.AnimationSequenceValidator.controller.loadBitmap.LoadBitmapCommand;
-    import com.rokannon.project.AnimationSequenceValidator.controller.loadBitmap.LoadBitmapContext;
     import com.rokannon.project.AnimationSequenceValidator.controller.readFrameType.ReadFrameTypeCommand;
     import com.rokannon.project.AnimationSequenceValidator.controller.readFrameType.ReadFrameTypeContext;
 
     public class LoadFrameInfoCommand extends SequenceCommand
     {
         private const _fileLoadContext:FileLoadContext = new FileLoadContext();
-        private const _loadBitmapContext:LoadBitmapContext = new LoadBitmapContext();
+        private const _loadBitmapContext:BitmapLoadContext = new BitmapLoadContext();
         private const _readFrameTypeContext:ReadFrameTypeContext = new ReadFrameTypeContext();
 
         private var _context:LoadFrameInfoContext;
@@ -24,7 +24,7 @@ package com.rokannon.project.AnimationSequenceValidator.controller.loadFrameInfo
             _fileLoadContext.fileToLoad = _context.model.filesToLoad[_context.fileIndex];
             addCommand(new FileLoadCommand(_fileLoadContext));
             addCommand(new MethodCommand(doPrepareLoadBitmapContext, null));
-            addCommand(new LoadBitmapCommand(_loadBitmapContext));
+            addCommand(new BitmapLoadCommand(_loadBitmapContext));
             addCommand(new MethodCommand(doPrepareReadFrameTypeContext, null));
             addCommand(new ReadFrameTypeCommand(_readFrameTypeContext));
             addCommand(new MethodCommand(doSetFrameType, null));

@@ -72,7 +72,7 @@ package com.rokannon.project.AnimationSequenceValidator
             if (parentElement is Container)
             {
                 var container:Container = parentElement as Container;
-                for (var i:int = 0; i < container.numChildren; i++)
+                for (var i:int = 0; i < container.numChildren; ++i)
                 {
                     var child:DisplayObject = container.getChildAt(i);
                     if (child is UIComponent)
@@ -108,7 +108,7 @@ package com.rokannon.project.AnimationSequenceValidator
 
         private static function prepareHelperFiles(files:Array):void
         {
-            for (var i:int = 0; i < files.length; i++)
+            for (var i:int = 0; i < files.length; ++i)
                 helperFiles[i] = files[i];
         }
     }
